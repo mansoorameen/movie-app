@@ -1,7 +1,7 @@
 
 # Setup instructions
 
-Run 'yarn' or 'npm install'
+Run ```yarn``` or ```npm install```
 
 ## Step 1: Start the Metro Server
 
