@@ -12,11 +12,7 @@ function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator
-        // screenOptions={{
-        //   headerShown: false,
-        // }}
-        >
+        <Stack.Navigator>
           <Stack.Screen
             name="MovieListScreen"
             component={MovieListScreen}

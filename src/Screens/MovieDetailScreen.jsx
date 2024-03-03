@@ -62,12 +62,15 @@ const styles = StyleSheet.create({
     fontSize: width * 0.06,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: 'black',
   },
   rating: {
     fontSize: width * 0.03,
     marginBottom: 10,
+    color: 'black',
   },
   overview: {
     fontSize: width * 0.04,
+    color: 'black',
   },
 });

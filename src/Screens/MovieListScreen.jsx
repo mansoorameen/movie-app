@@ -8,7 +8,6 @@ import {
   Image,
   StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
   Alert,
   ActivityIndicator,
@@ -42,7 +41,7 @@ const MovieListScreen = ({navigation}) => {
     // if searching
     if (isSearching) {
       // using debounce method to call search api
-      // timer expires when user stops typing fot 500ms
+      // timer expires when user stops typing for 500ms
       // avoids unnecessary multiple calls for each entry
       timeoutId = setTimeout(() => {
         if (searchQuery.trim() !== '') {
@@ -82,6 +81,7 @@ const MovieListScreen = ({navigation}) => {
       console.log('movies', data);
       setMovies(data?.results || []);
       setIsLoading(false);
+      setIsSortEnabled(false);
     } catch (error) {
       // if api failed, show error message
       setIsLoading(false);
@@ -147,23 +147,18 @@ const MovieListScreen = ({navigation}) => {
     </TouchableOpacity>
   );
 
+  // pagination view
   const renderPagination = () => (
     <View style={styles.pagination}>
       <TouchableOpacity
         onPress={() => setPage(page - 1)}
         disabled={page == 1}
-        style={[
-          styles.reloadBtn,
-          {height: 30, padding: 0, paddingHorizontal: 5},
-        ]}>
+        style={[styles.btn, {height: 30, padding: 0, paddingHorizontal: 5}]}>
         <Text style={{color: '#fff'}}>Previous</Text>
       </TouchableOpacity>
       <Text>{page}</Text>
       <TouchableOpacity
-        style={[
-          styles.reloadBtn,
-          {height: 30, padding: 0, paddingHorizontal: 5},
-        ]}
+        style={[styles.btn, {height: 30, padding: 0, paddingHorizontal: 5}]}
         onPress={() => setPage(page + 1)}>
         <Text style={{color: '#fff'}}>Next</Text>
       </TouchableOpacity>
@@ -177,15 +172,14 @@ const MovieListScreen = ({navigation}) => {
           <TextInput
             style={[styles.searchInput, {flex: 1}]}
             placeholder="Search movies by typing..."
+            placeholderTextColor="gray"
             value={searchQuery}
             onChangeText={e => {
               setIsSearching(true);
               setSearchQuery(e);
             }}
           />
-          <TouchableOpacity
-            style={styles.reloadBtn}
-            onPress={() => fetchMovies()}>
+          <TouchableOpacity style={styles.btn} onPress={() => fetchMovies()}>
             <Text style={{color: '#fff'}}>Reload</Text>
           </TouchableOpacity>
         </View>
@@ -196,7 +190,7 @@ const MovieListScreen = ({navigation}) => {
           }}>
           <TouchableOpacity
             style={[
-              styles.reloadBtn,
+              styles.btn,
               {backgroundColor: isSortEnabled ? 'green' : 'gray'},
             ]}
             onPress={() => {
@@ -257,20 +251,23 @@ const styles = StyleSheet.create({
   title: {
     fontSize: width * 0.05,
     fontWeight: 'bold',
+    color: 'black',
   },
   rating: {
     fontSize: width * 0.03,
     marginTop: 5,
+    color: 'black',
   },
   searchInput: {
     height: 40,
     borderColor: 'gray',
+    color: 'black',
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
   },
-  reloadBtn: {
+  btn: {
     justifyContent: 'center',
     height: 40,
     borderRadius: 5,
