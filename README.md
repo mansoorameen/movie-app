@@ -1,13 +1,7 @@
 
 # Getting Started
 
-First run ```bash
-# using npm
-npm install
-
-# OR using Yarn
-yarn
-```
+First run 'yarn' or 'npm install'
 
 ## Step 1: Start the Metro Server
 
