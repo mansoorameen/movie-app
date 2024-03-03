@@ -1,3 +1,4 @@
+APK file is inside the APK folder
 
 # Setup instructions
 
